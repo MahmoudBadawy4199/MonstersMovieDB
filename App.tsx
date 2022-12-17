@@ -1,20 +1,54 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// React
+import React from 'react';
+import { I18nManager, StatusBar, StyleSheet } from 'react-native';
+// Libraries
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
+import RNRestart from 'react-native-restart';
+// Redux
+import { Provider as ReduxProvider } from 'react-redux';
+import { store } from './src/redux/store';
+// Navigation
+import HomeStackNavigator from './src/navigation/HomeStackNavigator';
+import { useAppDispatch } from './src/redux/hooks';
+import { fetchHomepageMovies } from './src/redux/moviesSlice';
 
-export default function App() {
-    return (
-        <View style={styles.container}>
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <StatusBar style="auto" />
-        </View>
-    );
+// Disable RTL
+if (I18nManager.isRTL) {
+    I18nManager.forceRTL(false);
+    I18nManager.allowRTL(false);
+    I18nManager.swapLeftAndRightInRTL(false);
+    RNRestart.Restart();
 }
 
+function App() {
+    // Fetch the api data into store
+    const dispatch = useAppDispatch();
+    React.useEffect(() => {
+        dispatch(fetchHomepageMovies());
+    }, [dispatch]);
+
+    return (
+        <SafeAreaView style={styles.appContainerStyle}>
+            <StatusBar barStyle={'light-content'} />
+            <HomeStackNavigator />
+        </SafeAreaView>
+    );
+}
+export default () => {
+    return (
+        <ReduxProvider store={store}>
+            <SafeAreaProvider>
+                <NavigationContainer theme={DarkTheme}>
+                    <App />
+                </NavigationContainer>
+            </SafeAreaProvider>
+        </ReduxProvider>
+    );
+};
+
 const styles = StyleSheet.create({
-    container: {
+    appContainerStyle: {
         flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
 });
