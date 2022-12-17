@@ -1,8 +1,8 @@
 {
     "expo": {
-        "name": "MonstersMovieDB",
+        "name": "Monsters MovieDB",
         "slug": "MonstersMovieDB",
-        "version": "1.0.0",
+        "version": "1.0.2",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
         "userInterfaceStyle": "light",
@@ -19,6 +19,8 @@
             "supportsTablet": true
         },
         "android": {
+            "package": "com.badawy.MonstersMovieDB",
+            "versionCode": 3,
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
@@ -26,6 +28,11 @@
         },
         "web": {
             "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "d6325ee0-1257-482d-a0a2-1db5caacb2f5"
+            }
         }
     }
 }
