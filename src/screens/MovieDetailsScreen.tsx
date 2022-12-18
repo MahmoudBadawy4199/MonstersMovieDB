@@ -3,7 +3,6 @@ import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 // Libraries
 import { useRoute, RouteProp } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 // Types
 import { HomeStackParamListType } from '../types';
@@ -23,15 +22,6 @@ const MovieDetailsScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* Background Gradient */}
-            <LinearGradient
-                colors={[Colors.primary, Colors.dark]}
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 1 }}
-                locations={[0, 0.5]}
-                style={styles.backgroundGradientStyle}
-            />
-
             {/* Movie Image */}
             <Image
                 style={styles.movieImageStyle}
@@ -53,7 +43,10 @@ const MovieDetailsScreen = () => {
 export default MovieDetailsScreen;
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
+    container: {
+        flex: 1,
+        backgroundColor: Colors.dark,
+    },
     backgroundGradientStyle: {
         width: '100%',
         height: '100%',
@@ -79,9 +72,9 @@ const styles = StyleSheet.create({
         color: Colors.white,
     },
     overViewStyle: {
-        fontSize: moderateScale(18),
-        textAlign: 'center',
-        alignSelf: 'center',
+        fontSize: moderateScale(16),
+        textAlign: 'left',
+        alignSelf: 'flex-start',
         color: Colors.accent,
         marginTop: verticalScale(10),
     },

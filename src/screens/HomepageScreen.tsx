@@ -10,7 +10,6 @@ import {
     ActivityIndicator,
 } from 'react-native';
 // Libraries
-import { LinearGradient } from 'expo-linear-gradient';
 import { verticalScale, moderateScale } from 'react-native-size-matters';
 import { useNavigation } from '@react-navigation/native';
 // Components
@@ -42,15 +41,6 @@ const HomepageScreen = () => {
 
     return (
         <View style={styles.container}>
-            {/* Background Gradient */}
-            <LinearGradient
-                colors={[Colors.primary, Colors.dark]}
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 1 }}
-                locations={[0, 0.5]}
-                style={styles.backgroundGradientStyle}
-            />
-
             {/* Loading Indicator */}
             {loading ? (
                 <>
@@ -92,6 +82,7 @@ export default HomepageScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: Colors.dark,
     },
     LoadingIndicatorStyle: {
         ...StyleSheet.absoluteFillObject,
